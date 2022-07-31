@@ -8,6 +8,7 @@ from dqlab_sales_store
 where order_status ='Order Finished'
 group by years;
 
+
 --(1B)--
 
 select 
@@ -17,6 +18,7 @@ select
 from dqlab_sales_store
 where (year(order_date) between '2011' and '2012') and order_status = 'Order Finished'
 group by years, product_sub_category;
+
 
 --(2A)--
 
@@ -29,5 +31,23 @@ from dqlab_sales_store
 where order_status = 'Order Finished'
 group by years;
 
+
 --(2B)--
+
+select 
+	year(order_date) as years,
+	product_sub_category,
+	product_category,
+	sum(sales) as sales,
+	sum(discount_value) as promotion_value,
+	round((sum(discount_value)/sum(sales)) * 100,2) as burn_rate_percentage
+from dqlab_sales_store
+where order_status = 'Order Finished' and year(order_date) = '2012'
+group by years, product_sub_category, product_category
+order by sales desc;
+
+
+--(3A)--
+
+
 
