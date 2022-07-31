@@ -1,10 +1,7 @@
-- 👋 Hi, I’m @ersptk
-- 👀 I’m interested in Data
-- 🌱 I’m currently learning Python
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-
-<!---
-ersptk/ersptk is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+select distinct
+	year(order_date) as years, 
+	sum(sales) as sales,
+	count(order_id) as number_of_order
+from dqlab_sales_store
+where order_status ='Order Finished'
+group by years;
